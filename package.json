@@ -1,0 +1,26 @@
+{
+  "name": "ask-all-questions",
+  "version": "0.1.0",
+  "description": "Read one or more lines in Node.JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lvendrame/askAllQuestions.git"
+  },
+  "keywords": [
+    "node",
+    "nodejs",
+    "node.js",
+    "readline",
+    "question"
+  ],
+  "author": "Luis F. Vendrame <lvendrame@gmail.com> (http://www.lvendrame.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lvendrame/askAllQuestions/issues"
+  },
+  "homepage": "https://github.com/lvendrame/askAllQuestions#readme"
+}
