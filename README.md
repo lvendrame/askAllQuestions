@@ -13,18 +13,18 @@ Read one or more lines in Node.JS.
         console.dir(prompts);
     });
 
-It's show the questions:
+It's show that questions:
 ```sh
-	user: lvendrame
+	user: myUserName
 	password: myPassword
 	application name: myApp
 	application path: c:\projects\myProject
 ```
 
-It's return:
+and print:
 ```sh
-	[ user: 'lven',
-	  password: 'teste',
+	[ user: 'myUserName',
+	  password: 'myPassword',
 	  applicationName: 'myApp',
-	  applicationPath: 'c:\\teste\\karai' ]
+	  applicationPath: 'c:\\projects\\myProject' ]
 ```

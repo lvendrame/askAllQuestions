@@ -22,5 +22,8 @@
   "bugs": {
     "url": "https://github.com/lvendrame/askAllQuestions/issues"
   },
-  "homepage": "https://github.com/lvendrame/askAllQuestions#readme"
+  "homepage": "https://github.com/lvendrame/askAllQuestions#readme",
+  "dependencies": {
+    "readline": "0.0.8"
+  }
 }
