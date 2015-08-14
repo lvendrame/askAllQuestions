@@ -1,5 +1,5 @@
 # askAllQuestions
-Read one or more lines in Node.JS.
+Simple Node.JS module to show and read many questions on command line applications.
 
 ## Example:
 	var askAllQuestions = require('askAllQuestions');
