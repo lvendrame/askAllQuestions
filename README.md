@@ -13,7 +13,7 @@ Read one or more lines in Node.JS.
         console.dir(prompts);
     });
 
-It's show that questions:
+This shows these questions:
 ```sh
 	user: myUserName
 	password: myPassword
