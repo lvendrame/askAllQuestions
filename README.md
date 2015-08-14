@@ -1,8 +1,8 @@
-# askAllQuestions
+# ask-all-questions
 Simple Node.JS module to show and read many questions on command line applications.
 
 ## Example:
-	var askAllQuestions = require('askAllQuestions');
+	var askAllQuestions = require('ask-all-questions');
 	
     askAllQuestions([
             { name: 'user', question: 'user: ' },
