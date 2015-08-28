@@ -10,7 +10,7 @@ npm i ask-all-questions
 ```
 
 ## Example:
-```
+```js
 var askAllQuestions = require('ask-all-questions');
 
 askAllQuestions([
@@ -22,21 +22,36 @@ askAllQuestions([
 	console.dir(prompts);
 });
 ```
+Or with promise:
+```js
+var askAllQuestions = require('ask-all-questions');
+
+askAllQuestions([
+	{ name: 'user', question: 'user: ' },
+	{ name: 'password', question: 'password: ' },
+	{ name: 'applicationName', question: 'application name: ' },
+	{ name: 'applicationPath', question: 'application path: ' }
+]).then(function (prompts) {
+	console.dir(prompts);
+});
+```
+
+
 
 This shows these questions:
 
 ```sh
-	user: myUserName
-	password: myPassword
-	application name: myApp
-	application path: c:\projects\myProject
+user: myUserName
+password: myPassword
+application name: myApp
+application path: c:\projects\myProject
 ```
 
 and print:
 
-```sh
-	[ user: 'myUserName',
+```js
+	{ user: 'myUserName',
 	  password: 'myPassword',
 	  applicationName: 'myApp',
-	  applicationPath: 'c:\\projects\\myProject' ]
+	  applicationPath: 'c:\\projects\\myProject' }
 ```

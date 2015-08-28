@@ -4,6 +4,8 @@ var rl = require('readline').createInterface({
 	  output: process.stdout
 	});
 
+var q = require('q');
+
 function askQuestion(prompt, next) {
 	rl.question(prompt.question, function(answer) {
 		prompt.answer = answer;
@@ -12,12 +14,17 @@ function askQuestion(prompt, next) {
 }
 
 function askAllQuestions(prompts, callback) {
-    var i = prompts.length - 1,
+    var i = prompts.length - 1, result, deferred,
 		fn = askQuestion.bind(null, prompts[i], function () {
-		    callback(prompts.reduce(function (obj, prompt) {
+				result = prompts.reduce(function (obj, prompt) {
 		        obj[prompt.name] = prompt.answer;
 		        return obj;
-		    }, []));
+		    }, {});
+		    if(callback){
+						callback(result);
+				}else {
+						deferred.resolve(result);
+				}
 		    rl.close();
 		});
 
@@ -26,6 +33,11 @@ function askAllQuestions(prompts, callback) {
 	}
 
 	setTimeout(fn, 0);
+
+	if(!callback){
+			deferred = q.defer();
+			return deferred.promise;
+	}
 }
 
 module.exports = askAllQuestions;
