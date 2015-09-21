@@ -1,42 +1,48 @@
 "use strict";
-var rl = require('readline').createInterface({
-	  input: process.stdin,
-	  output: process.stdout
-	});
-
+var readline = require('readline');
 var q = require('q');
+var FnQueue = require('./fnQueue');
 
-function askQuestion(prompt, next) {
-	rl.question(prompt.question, function(answer) {
-		prompt.answer = answer;
-		next();
-	});
-}
+function askAllQuestions(prompts, callback){
+    var i = 0, len = prompts.length;
+	var fnQueue = new FnQueue();
+    var response = {};
+	var rl = readline.createInterface({
+		  input: process.stdin,
+		  output: process.stdout
+	  });
 
-function askAllQuestions(prompts, callback) {
-    var i = prompts.length - 1, result, deferred,
-		fn = askQuestion.bind(null, prompts[i], function () {
-				result = prompts.reduce(function (obj, prompt) {
-		        obj[prompt.name] = prompt.answer;
-		        return obj;
-		    }, {});
-		    if(callback){
-						callback(result);
-				}else {
-						deferred.resolve(result);
-				}
-		    rl.close();
+    while (i< len) {
+        fnQueue.add(
+            askQuestion.bind(null, prompts[i++])
+        );
+    }
+
+	fnQueue.delayStart(1);
+
+    if(callback){
+        fnQueue.add(function(){
+			rl.close();
+			callback(response);
 		});
+    }else{
+        return callPromise();
+    }
 
-	for(i--;i >= 0; i--){
-	    fn = askQuestion.bind(null, prompts[i], fn);
+	function askQuestion(prompt) {
+		rl.question(prompt.question, function(answer) {
+			response[prompt.name] = answer;
+			fnQueue.next();
+		});
 	}
 
-	setTimeout(fn, 0);
-
-	if(!callback){
-			deferred = q.defer();
-			return deferred.promise;
+	function callPromise(){
+	    var deferred = q.defer();
+		fnQueue.add(function(){
+			rl.close();
+	        deferred.resolve(response);
+	    });
+	    return deferred.promise;
 	}
 }
 
